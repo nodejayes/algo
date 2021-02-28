@@ -178,6 +178,33 @@ func TestMatrix_Fill2D(t *testing.T) {
 	}
 }
 
+func TestMatrix_Add(t *testing.T) {
+	m := NewMatrix([][]float64{
+		{3, 2},
+		{0, 1},
+	})
+	ma := NewMatrix([][]float64{
+		{1, 3},
+		{2, 0},
+	})
+	err := m.Add(ma)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if m.v[0][0] != 4 {
+		t.Fatal(errors.New("invalid value in 0 0 expect 4"))
+	}
+	if m.v[0][1] != 5 {
+		t.Fatal(errors.New("invalid value in 0 1 expect 5"))
+	}
+	if m.v[1][0] != 2 {
+		t.Fatal(errors.New("invalid value in 1 0 expect 2"))
+	}
+	if m.v[1][1] != 1 {
+		t.Fatal(errors.New("invalid value in 1 1 expect 1"))
+	}
+}
+
 func TestMatrix_Inverse(t *testing.T) {
 	base := NewMatrix([][]float64{
 		{1, 2},
