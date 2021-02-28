@@ -205,6 +205,33 @@ func TestMatrix_Add(t *testing.T) {
 	}
 }
 
+func TestMatrix_Subtract(t *testing.T) {
+	m := NewMatrix([][]float64{
+		{8, 7},
+		{6, 5},
+	})
+	ma := NewMatrix([][]float64{
+		{1, 2},
+		{3, 4},
+	})
+	err := m.Subtract(ma)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if m.v[0][0] != 7 {
+		t.Fatal(errors.New("invalid value in 0 0 expect 7"))
+	}
+	if m.v[0][1] != 5 {
+		t.Fatal(errors.New("invalid value in 0 1 expect 5"))
+	}
+	if m.v[1][0] != 3 {
+		t.Fatal(errors.New("invalid value in 1 0 expect 3"))
+	}
+	if m.v[1][1] != 1 {
+		t.Fatal(errors.New("invalid value in 1 1 expect 1"))
+	}
+}
+
 func TestMatrix_Inverse(t *testing.T) {
 	base := NewMatrix([][]float64{
 		{1, 2},
